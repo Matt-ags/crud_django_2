@@ -2,7 +2,7 @@
 
 Este projeto é um exemplo simples feito com Django, contendo rotas, formulários e operações básicas com o banco de dados.
 
-[![Acesse o Projeto](https://img.shields.io/badge/Acessar%20Projeto-Online-blue?style=for-the-badge&logo=django)](https://mattzin.pythonanywhere.com/home/)
+[![Acesse o Projeto](https://img.shields.io/badge/Acessar%20Projeto-Online-blue?style=for-the-badge&logo=django)](https://mattzin.pythonanywhere.com/)
 
 
 ## 📥 Clonando o repositório
