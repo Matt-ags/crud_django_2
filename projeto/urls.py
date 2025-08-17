@@ -24,10 +24,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home),
     path('deletar/<int:id>/', views.deletar_usuario, name='deletar_usuario'),
+    path('editar/<int:id>/', views.editar_usuario, name='editar_usuario'),
     
     # 14/08/2025 -> adicionar urls de "mycontacts"
     path('', mycontacts_views.show),
     path('add/', mycontacts_views.add),
+    path('deletar_contact/<int:id>/', mycontacts_views.deletar_usuario, name='deletar_usuario_contact'),
 ]
 
 # models -> banco de dados

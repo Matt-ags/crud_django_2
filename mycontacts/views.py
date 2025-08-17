@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import AddForm
 from .models import Contact
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 def show(request):
     """ 
@@ -41,4 +42,8 @@ def add(request):
     else:
         return render(request, 'mycontacts/add.html')
 
-    
+
+def deletar_usuario(request, id):
+    usuario = get_object_or_404(Contact, id=id)
+    usuario.delete()
+    return redirect('/')

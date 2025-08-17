@@ -22,3 +22,13 @@ def deletar_usuario(request, id):
     usuario.delete()
     return redirect('/home/')
 
+def editar_usuario(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+
+    if request.method == "POST":
+        novo_nome = request.POST.get('nome')
+        usuario.nome = novo_nome
+        usuario.save()
+        return redirect('/home/')
+    
+    return render(request, 'editar_usuario.html', {'usuario': usuario})
