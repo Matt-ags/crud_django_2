@@ -27,9 +27,10 @@ urlpatterns = [
     path('editar/<int:id>/', views.editar_usuario, name='editar_usuario'),
     
     # 14/08/2025 -> adicionar urls de "mycontacts"
-    path('', mycontacts_views.show),
-    path('add/', mycontacts_views.add),
+    path('', mycontacts_views.mycontacts, name='mycontacts'),
+    path('add/', mycontacts_views.adicionar),
     path('deletar_contact/<int:id>/', mycontacts_views.deletar_usuario, name='deletar_usuario_contact'),
+    path('editarContato/<int:id>/', mycontacts_views.editarContato, name='editarContato'),
 ]
 
 # models -> banco de dados

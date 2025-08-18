@@ -4,15 +4,34 @@ from .models import Contact
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
-def show(request):
-    """ 
-    This function gets all the members in your Database through your Model
-    Any further usage please refer to: https://docs.djangoproject.com/el/1.10/ref/models/querysets/
-    """
-    contact_list = Contact.objects.all()
-    return render(request, 'mycontacts/show.html',{'contacts': contact_list})
+
+def deletar_usuario(request, id):
+    usuario = get_object_or_404(Contact, id=id)
+    usuario.delete()
+    return redirect('/')
+
+def editarContato(request, id):
+    usuario = get_object_or_404(Contact, id=id)
+
+    if request.method == "POST":
+
+        novo_nome = request.POST.get('name')
+        novo_relation = request.POST.get('relation')
+        novo_phone = request.POST.get('phone')
+        novo_email = request.POST.get('email')
+
+        usuario.name = novo_nome
+        usuario.relation = novo_relation
+        usuario.phone = novo_phone
+        usuario.email = novo_email
+
+        usuario.save()
+
+        return redirect('/')
     
-def add(request):
+    return render(request, 'mycontacts/editarContato.html', {'usuario': usuario})
+
+def adicionar(request):
     """ This function is called to add one contact member to your contact list in your Database """
     if request.method == 'POST':
         
@@ -34,16 +53,15 @@ def add(request):
                 )
                  
             contact_list = Contact.objects.all()
-            return render(request, 'mycontacts/show.html',{'contacts': contact_list})    
+            return render(request, 'mycontacts/mycontacts.html',{'contacts': contact_list}) 
         
         else:
             """ redirect to the same page if django_form goes wrong """
-            return render(request, 'mycontacts/add.html')
+            return render(request, 'mycontacts/adicionar.html')
     else:
-        return render(request, 'mycontacts/add.html')
+        return render(request, 'mycontacts/adicionar.html')
 
 
-def deletar_usuario(request, id):
-    usuario = get_object_or_404(Contact, id=id)
-    usuario.delete()
-    return redirect('/')
+def mycontacts(request):
+    contact_list = Contact.objects.all()
+    return render(request, 'mycontacts/mycontacts.html',{'contacts': contact_list})
