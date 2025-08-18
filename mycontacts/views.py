@@ -10,6 +10,18 @@ def deletar_usuario(request, id):
     usuario.delete()
     return redirect('/')
 
+def verDetalhes(request, id):
+    usuario = get_object_or_404(Contact, id=id)
+
+    if request.method == "GET":
+
+        novo_nome = request.GET.get('name')
+        novo_relation = request.GET.get('relation')
+        novo_phone = request.GET.get('phone')
+        novo_email = request.GET.get('email')
+
+        return render(request, 'mycontacts/verDetalhes.html', {'usuario': usuario})    
+
 def editarContato(request, id):
     usuario = get_object_or_404(Contact, id=id)
 
